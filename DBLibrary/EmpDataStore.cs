@@ -159,7 +159,6 @@ namespace DBLibrary
                 connection.Close();
             }
         }
-
         public int DeleteEmp(int eno)
         {
             try
