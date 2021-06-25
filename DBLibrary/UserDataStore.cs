@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data;
+using System.Configuration;
 
 namespace DBLibrary
 {
@@ -33,10 +34,10 @@ namespace DBLibrary
                 reader = command.ExecuteReader();                //reader = command.ExecuteReader();
                 if (reader.HasRows)
                 {
-                    reader.Close();
+                    //reader.Close();
                     return true;
                 }                
-                reader.Close();
+                //reader.Close();
                 return false;
             }
             catch (Exception)
@@ -47,6 +48,23 @@ namespace DBLibrary
             {
                 connection.Close();
             }
+        }
+        public bool ValidateDisconnected(UserData user)
+        {
+            // Disconnected Arch
+            SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["connstr"].ConnectionString);
+            //SqlConnection connection = new SqlConnection(@"data source=(localdb)\MSSQLLocalDB;intial catalogue=training;integrated security=true;");
+            string sql = "SELECT * FROM USERDATA";
+            SqlDataAdapter adapter = new SqlDataAdapter(sql, connection);
+            DataSet ds = new DataSet();
+            adapter.Fill(ds, "USERDATA");
+            DataTable dataTable = ds.Tables["USERDATA"];
+            //if (dataTable == null) Console.WriteLine("sldfkj");
+            DataRow[] dr = dataTable.Select($"USERNAME='{user.UserName}' AND PASSWORD='{user.Password}'");
+            //DataRow[] dr = dataTable.Select("USERNAME='dbc' AND PASSWORD='pass'");
+            if (dr != null && dr.Length != 0)
+                return true;
+            return false;
         }
     }
 }

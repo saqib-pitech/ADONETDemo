@@ -76,8 +76,7 @@ namespace DatabaseApp
         {
             try
             {
-                DeleteEmpTest(eno);
-                InsertEmp();
+                int temp=empDataStore.UpdateEmp(eno);
             }
             catch (Exception ex)
             {
@@ -91,7 +90,7 @@ namespace DatabaseApp
             //empcrudDemo.DisplayEmp(1);
             //empcrudDemo.InsertEmp();
             //empcrudDemo.DeleteEmpTest(101);            
-            empcrudDemo.UpdateEmpTest(6);
+            empcrudDemo.UpdateEmpTest(7);
             Console.ReadLine();
         }
     }
