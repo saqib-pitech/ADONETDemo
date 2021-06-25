@@ -72,7 +72,7 @@ namespace DatabaseApp
                 Console.WriteLine(ex.Message);
             }
         }
-        void UpdateEmpTest(int eno)
+        void UpdateEmpTest(int eno)  // update with querys
         {
             try
             {
