@@ -183,7 +183,7 @@ namespace DBLibrary
                 connection.Close();
             }
         }
-        public int UpdateEmp(int eno)
+        public int UpdateEmp(Emp emp)
         {
             try
             {
@@ -199,18 +199,13 @@ namespace DBLibrary
                 //int count = command.ExecuteNonQuery();                //reader = command.ExecuteReader();                                
                 //if (count != 0)
                 //{
-                Emp emp = new Emp();                    
-                    Console.Write("Name: ");
-                    emp.EmpName = Console.ReadLine();
-                    Console.Write("Date: ");
-                    emp.HireDate = DateTime.Parse(Console.ReadLine());
-                    Console.Write("Sal: ");
-                    emp.Salary = decimal.Parse(Console.ReadLine());
+                //Emp emp = new Emp();                    
+                    
                     //Console.WriteLine(emp);
                     //Emp emp = new Emp() { EmpNo=124, EmpName="absd", HireDate=DateTime.Parse("01/01/2020"), Salary=1424};                    
                     string sql = "update emp SET ename=@ENAME, hiredate=@DATE, sal=@SAL where empno=@ENO";
                     command = new SqlCommand(sql, connection);
-                    command.Parameters.AddWithValue("ENO", eno);
+                    command.Parameters.AddWithValue("ENO", emp.EmpNo);
                     command.Parameters.AddWithValue("ENAME", emp.EmpName);
                     command.Parameters.AddWithValue("DATE", emp.HireDate);
                     command.Parameters.AddWithValue("SAL", emp.Salary);

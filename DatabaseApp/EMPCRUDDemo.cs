@@ -72,11 +72,20 @@ namespace DatabaseApp
                 Console.WriteLine(ex.Message);
             }
         }
-        void UpdateEmpTest(int eno)  // update with querys
+        void UpdateEmpTest()  // update with querys
         {
             try
             {
-                int temp=empDataStore.UpdateEmp(eno);
+                Emp emp = new Emp();
+                Console.WriteLine("Eno: ");
+                emp.EmpNo = int.Parse(Console.ReadLine());
+                Console.Write("Name: ");
+                emp.EmpName = Console.ReadLine();
+                Console.Write("Date: ");
+                emp.HireDate = DateTime.Parse(Console.ReadLine());
+                Console.Write("Sal: ");
+                emp.Salary = decimal.Parse(Console.ReadLine());
+                int temp=empDataStore.UpdateEmp(emp);
             }
             catch (Exception ex)
             {
@@ -90,7 +99,7 @@ namespace DatabaseApp
             //empcrudDemo.DisplayEmp(1);
             //empcrudDemo.InsertEmp();
             //empcrudDemo.DeleteEmpTest(101);            
-            empcrudDemo.UpdateEmpTest(7);
+            empcrudDemo.UpdateEmpTest();
             Console.ReadLine();
         }
     }
